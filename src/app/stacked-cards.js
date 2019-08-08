@@ -239,7 +239,8 @@
 		//Swipe active card to right.
 		function onSwipeRight() {
 			removeNoTransition();
-			transformUi(1000, 0, 0, currentElementObj);
+			transformUi(2000, 0, 1, currentElementObj);
+      
 			if(useOverlays){
 				transformUi(1000, 0, 0, rightObj); //Move rightOverlay
 				transformUi(1000, 0, 0, topObj); //Move topOverlay
@@ -250,7 +251,10 @@
       if(currentPosition<0){
         currentPosition=maxElements-1;
       }
-			updateUi();
+      setTimeout(()=>{
+        updateUi();
+      },100);
+			
 			currentElement();
       // changeBackground();
       // changeStages();
@@ -486,6 +490,7 @@
 					}
 				
 				}
+        console.log(element.style);
 			});	  
 		};
 	
