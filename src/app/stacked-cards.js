@@ -192,7 +192,8 @@
 				}
 	
 				setTimeout(function(){
-					onSwipeRight();
+					// onSwipeRight();
+          onSwipeBottom();
 					resetOverlayRight();
 				},300);
 			}
@@ -239,7 +240,7 @@
 		//Swipe active card to right.
 		function onSwipeRight() {
 			removeNoTransition();
-			transformUi(2000, 0, 1, currentElementObj);
+			transformUi(1000, 0, 0, currentElementObj);
       
 			if(useOverlays){
 				transformUi(1000, 0, 0, rightObj); //Move rightOverlay
@@ -253,7 +254,7 @@
       }
       setTimeout(()=>{
         updateUi();
-      },100);
+      },300);
 			
 			currentElement();
       // changeBackground();
@@ -273,11 +274,43 @@
 			}
 	
 			currentPosition = currentPosition + 1;
+      if(currentPosition==maxElements){
+        currentPosition=0;
+      }
 			updateUi();
 			currentElement();
-      changeBackground();
-      changeStages();
-			setActiveHidden();
+      // changeBackground();
+      // changeStages();
+			// setActiveHidden();
+		};
+
+    //Swipe active card to right.
+		function onSwipeBottom() {
+			removeNoTransition();
+      //
+			// transformUi(0, -1000, 0, currentElementObj);
+      
+			if(useOverlays){
+				transformUi(1000, 0, 0, rightObj); //Move rightOverlay
+				transformUi(1000, 0, 0, topObj); //Move topOverlay
+				resetOverlayRight();
+			}
+	
+			currentPosition = currentPosition - 1;
+      if(currentPosition<0){
+        currentPosition=maxElements-1;
+        listElNodesObj[maxElements-1];
+      }
+      transformUi(0, -1000, 0, listElNodesObj[currentPosition]);
+      setTimeout(()=>{
+        updateUi();
+        currentElement();
+      },100);
+			// updateUi();
+			
+      // changeBackground();
+      // changeStages();
+			// setActiveHidden();
 		};
 		
 		//Remove transitions from all elements to be moved in each swipe movement to improve perfomance of stacked cards.
@@ -490,7 +523,6 @@
 					}
 				
 				}
-        console.log(element.style);
 			});	  
 		};
 	
@@ -505,7 +537,6 @@
 				var elTransInc = elementsMargin;
         var index = 0;
 				for(i = currentPosition; i < (currentPosition + items); i++){
-          console.log(i,maxElements,i%maxElements);
           index = i%maxElements;
 					if(listElNodesObj[index]){
 						if(stackedOptions === "Top"){
@@ -538,16 +569,18 @@
 							elTrans = elTrans + elTransInc;
 	
 						}
-	
+	          listElNodesObj[index].style.zIndex = elZindex;
 						listElNodesObj[index].style.transform ='scale(' + elScale + ') translateX(0) translateY(' + (elTrans - elTransInc) + 'px) translateZ(0)';
 						listElNodesObj[index].style.webkitTransform ='scale(' + elScale + ') translateX(0) translateY(' + (elTrans - elTransInc) + 'px) translateZ(0)';
 						listElNodesObj[index].style.opacity = elOpac;
-						listElNodesObj[index].style.zIndex = elZindex;
+						
 	
 						elScale = elScale - 0.04;
 						elOpac = elOpac - (1 / items);
 						elZindex--;
 					}
+ 
+             console.log(index, listElNodesObj[index].style.zIndex);
 				}
 	
 			});
