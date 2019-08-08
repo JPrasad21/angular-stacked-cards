@@ -498,12 +498,14 @@
 				var elOpac = 1;
 				var elTransTop = items;
 				var elTransInc = elementsMargin;
-	
+        var index = 0;
 				for(i = currentPosition; i < (currentPosition + items); i++){
-					if(listElNodesObj[i]){
+          console.log(i,maxElements,i%maxElements);
+          index = i%maxElements;
+					if(listElNodesObj[index]){
 						if(stackedOptions === "Top"){
 	
-							listElNodesObj[i].classList.add('stackedcards-top', 'stackedcards--animatable', 'stackedcards-origin-top');
+							listElNodesObj[index].classList.add('stackedcards-top', 'stackedcards--animatable', 'stackedcards-origin-top');
 	
 							if(useOverlays){
 								leftObj.classList.add('stackedcards-origin-top');
@@ -515,7 +517,7 @@
 							elTransTop--;
 	
 						} else if(stackedOptions === "Bottom"){
-							listElNodesObj[i].classList.add('stackedcards-bottom', 'stackedcards--animatable', 'stackedcards-origin-bottom');
+							listElNodesObj[index].classList.add('stackedcards-bottom', 'stackedcards--animatable', 'stackedcards-origin-bottom');
 	
 							if(useOverlays){
 								leftObj.classList.add('stackedcards-origin-bottom');
@@ -527,15 +529,15 @@
 	
 						} else if (stackedOptions === "None"){
 	
-							listElNodesObj[i].classList.add('stackedcards-none', 'stackedcards--animatable');
+							listElNodesObj[index].classList.add('stackedcards-none', 'stackedcards--animatable');
 							elTrans = elTrans + elTransInc;
 	
 						}
 	
-						listElNodesObj[i].style.transform ='scale(' + elScale + ') translateX(0) translateY(' + (elTrans - elTransInc) + 'px) translateZ(0)';
-						listElNodesObj[i].style.webkitTransform ='scale(' + elScale + ') translateX(0) translateY(' + (elTrans - elTransInc) + 'px) translateZ(0)';
-						listElNodesObj[i].style.opacity = elOpac;
-						listElNodesObj[i].style.zIndex = elZindex;
+						listElNodesObj[index].style.transform ='scale(' + elScale + ') translateX(0) translateY(' + (elTrans - elTransInc) + 'px) translateZ(0)';
+						listElNodesObj[index].style.webkitTransform ='scale(' + elScale + ') translateX(0) translateY(' + (elTrans - elTransInc) + 'px) translateZ(0)';
+						listElNodesObj[index].style.opacity = elOpac;
+						listElNodesObj[index].style.zIndex = elZindex;
 	
 						elScale = elScale - 0.04;
 						elOpac = elOpac - (1 / items);
