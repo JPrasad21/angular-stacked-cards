@@ -226,11 +226,14 @@
 				resetOverlayLeft();
 			}
 			currentPosition = currentPosition + 1;
+      if(currentPosition==maxElements){
+        currentPosition=0;
+      }
 			updateUi();
 			currentElement();
-      changeBackground();
-      changeStages();
-			setActiveHidden();
+      // changeBackground();
+      // changeStages();
+			// setActiveHidden();
 		};
 		
 		//Swipe active card to right.
@@ -243,12 +246,15 @@
 				resetOverlayRight();
 			}
 	
-			currentPosition = currentPosition + 1;
+			currentPosition = currentPosition - 1;
+      if(currentPosition<0){
+        currentPosition=maxElements-1;
+      }
 			updateUi();
 			currentElement();
-      changeBackground();
-      changeStages();
-			setActiveHidden();
+      // changeBackground();
+      // changeStages();
+			// setActiveHidden();
 		};
 		
 		//Swipe active card to top.

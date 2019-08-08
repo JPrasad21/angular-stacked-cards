@@ -12,13 +12,7 @@ export class AppComponent  {
   }
 
   ngAfterViewInit(){
-    stackedCards();
-      if(!this.viewInitiated){
-        // setInterval(()=>{stackedCards()});
-        this.viewInitiated = true;
-      }
-  //   // setInterval(()=>{stackedCards()},1000);
-    
+    stackedCards();  
   }
 
 }
