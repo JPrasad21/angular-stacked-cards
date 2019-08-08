@@ -295,11 +295,14 @@
 				transformUi(1000, 0, 0, topObj); //Move topOverlay
 				resetOverlayRight();
 			}
-	
+      updateUi();
 			currentPosition = currentPosition - 1;
       if(currentPosition<0){
         currentPosition=maxElements-1;
-        listElNodesObj[maxElements-1];
+        transformUi(0, -1000, 0, listElNodesObj[maxElements-1]);
+      }
+      else{
+
       }
       transformUi(0, -1000, 0, listElNodesObj[currentPosition]);
       setTimeout(()=>{
